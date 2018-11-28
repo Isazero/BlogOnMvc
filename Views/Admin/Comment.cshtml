@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css">
+    <script src="@Url.Content("~/Scripts/jquery-3.0.0.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+
+    <meta name="viewport" content="width=device-width"/>
+    <title>Comment</title>
+</head>
+<body>
+    <div style="margin-left: 10px; margin-right: 10px;margin-top: 10px">
+        @using (Html.BeginForm("Search", "Comment", FormMethod.Get))
+        {
+            @Html.TextBox("searchVal") <input type="submit" name="submit" value="Search" />
+        }
+
+        <table class="table table-bordered table-striped" style="margin-top: 10px">
+            <thead>
+                <tr>
+                    <th>@Html.ActionLink("CommentId", "Sort", "Comment", null, null, null, new { sortOrder = "id_desc"}, null)</th>
+                    <th>@Html.ActionLink("Content", "Sort", "Comment", null, null, null, new { sortOrder = "content_desc" }, null)</th>
+                    <th>@Html.ActionLink("UserId", "Sort", "Comment", null, null, null, new { sortOrder = "userId_desc" }, null)</th>
+                    <th>@Html.ActionLink("PostId", "Sort", "Comment", null, null, null, new { sortOrder = "postId_desc"}, null)</th>
+                    <th style="margin-right: 10px">@Html.ActionLink("DateCreatedId", "Sort", "Comment", null, null, null, new { sortOrder = "date_desc" }, null)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Comments != null)
+                {
+                    foreach (var c in ViewBag.Comments)
+                    {
+                        <tr>
+                            <td>
+                                @c.CommentId
+                            </td>
+                            <td>
+                                @c.Content
+                            </td>
+                            <td>
+                                @c.UserId
+                            </td>
+                            <td>
+                                @c.PostId
+                            </td>
+                            <td>
+                                @c.DateCreated
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
