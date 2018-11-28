@@ -1,0 +1,3 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CADMIN_005C_005FADMINBASICLAYOUT_002ECSHTML/@EntryIndexedValue">Views\Admin\_AdminBasicLayout.cshtml</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CADMIN_005C_005FADMINBASICLAYOUT_002ECSHTML/@EntryIndexedValue">Views\Admin\_AdminBasicLayout.cshtml</s:String></wpf:ResourceDictionary>
