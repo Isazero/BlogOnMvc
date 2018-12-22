@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "AllPosts";
+    Layout = ViewData["Layout"].ToString();
+}
+<div class="jumbotron">
+    <h1>Posts History</h1>
+</div>
+<div class="row">
+    @foreach (var p in ViewBag.Posts)
+    {
+
+        <div class="card" style="width: 400px">
+            <div class="card-body">
+                <h4 class="card-title">@p.Title</h4>
+                <p class="card-text text-truncate" style="width: 100px;">@p.Content</p>
+                @using (Html.BeginForm("ShowPost", "MainPage", FormMethod.Post))
+                {
+                    @Html.Hidden("postId", (int) p.PostId)
+
+                    <input class="btn btn-primary" type="submit" name="submit" value="Read" id="submit"/>
+                    @Html.Label("Date: " + (DateTime) p.PublishDate, new {@style = "margin-left: 50px"})
+                    @Html.Label("Author: " + (string)p.User.Name + " " + (string)p.User.Surname, new {@style = "margin-left: 115px"})
+                }
+
+            </div>
+        </div>
+    }
+
+</div>

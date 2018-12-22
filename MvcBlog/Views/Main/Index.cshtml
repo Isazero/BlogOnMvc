@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = ViewData["Layout"].ToString();
+
+}
+
+@foreach (var p in ViewBag.Posts)
+{
+    <div class="row">
+
+        <div class="col-sm-3 border-right">
+
+        </div>
+
+        <div class="col-sm-6 border">
+            <h4 style="margin-top: 10px"> @p.Title </h4>
+            <p class="text-truncate"> @p.Content </p>
+            @using (Html.BeginForm("ShowPost", "MainPage", FormMethod.Post))
+            {
+                @Html.Hidden("postId", (int) p.PostId)
+                <input class="btn btn-primary" type="submit" name="submit" style="margin-bottom:10px" value="Read" id="submit"/>
+                @Html.Label("Date: " + (DateTime) p.PublishDate, new {@style = "margin-left: 50px"})
+                @Html.Label("Author: " + (string) p.User.Name + " " + (string) p.User.Surname, new {@style = "margin-left: 115px"})
+            }
+
+        </div>
+
+        <div class="col-sm-3 border-left">
+
+        </div>
+
+    </div>
+}
+
+
+  

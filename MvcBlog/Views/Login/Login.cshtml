@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MainFormLayout.cshtml";
+}
+@model  MvcBlog.Models.LoginModel
+
+
+<div class="card my-5">
+
+    @using (Html.BeginForm("Login", "Account", null, FormMethod.Post, new { @class = "form-control", role = "form", id = "authentication-form" }))
+    {
+        <h5 class="card-title text-center">Sign In</h5>
+        @Html.AntiForgeryToken()
+        <div>
+            <div class="form-group text-center">
+            @if (ViewBag.Error != null)
+            {
+                <label id="errorMsg"> @ViewBag.Error</label>
+            }
+            </div>
+            <div class="form-group text-center">
+                <input type="text" name="login" id="email" placeholder="Логин">
+                @Html.ValidationMessageFor(m => m.Login, "", new {@class = "text-danger"})
+            </div>
+            <div class="form-group text-center">
+                <input type="password" name="password" id="password" placeholder="Пароль">
+                @Html.ValidationMessageFor(m => m.Login, "", new {@class = "text-danger"})
+
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-lg text-center" type="submit" id="signIn">Войти</button>
+                @Html.ActionLink("Регистрация", "OpenRegistrationForm", "Registration")
+
+            </div>
+        </div>
+           
+    }
+</div>
+

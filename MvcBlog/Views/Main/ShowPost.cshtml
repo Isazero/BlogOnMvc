@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Post";
+    Layout = ViewData["Layout"].ToString();
+}
+@model BlogModel.Post
+
+
+<div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6" style="margin-bottom: 20px">
+        <div class="form-group border ">
+            <h4 class="text-center">@Model.Title</h4>
+            <p class="text-center">
+                @Model.Content
+            </p>
+            <small>Дата публикации: @Model.PublishDate</small>
+            @if (@Model.User.Username == User.Identity.Name)
+            {
+                @Html.ActionLink("Редактировать", "OpenUserUpdatePost", "Post", null, null, null, new { postId = Model.PostId }, null)
+            }
+        </div>
+        <h4>Comments</h4>
+        @using (Html.BeginForm("UserAddComment", "Comment", FormMethod.Post))
+        {
+            @Html.Hidden("postId", Model.PostId)
+            if (ViewBag.CommentToUpdate != null)
+            {
+                @Html.TextArea("content", (string)ViewBag.CommentToUpdate, 5, 5, new { id = "contentArea", @class = "form-control" })
+            }
+            else
+            {
+                @Html.TextArea("content", " ", 5, 5, new { id = "contentArea", @class = "form-control" })
+                <input class="btn btn-primary" type="submit" name="submit" style="margin-bottom: 10px;margin-top: 10px" value="Добавить комментарий" id="submit" />
+            }
+
+            @Html.Hidden("dateCreated", DateTime.Now)
+
+        }
+
+        @foreach (var c in ViewBag.Comments)
+        {
+            <div class="border">
+                <p>@c.Content</p>
+                <p>Автор : @c.User.Username</p>
+                @if (@c.User.Username.Equals(User.Identity.Name))
+                {
+                    @Html.ActionLink("Удалить", "UserDeleteComment", "Comment",null, null, null, new { commentId = c.CommentId, postId = Model.PostId }, null)
+                
+                 
+                }
+            </div>
+        }
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+</div>
+
+
+

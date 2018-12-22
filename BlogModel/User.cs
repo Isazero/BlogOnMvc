@@ -27,10 +27,13 @@ namespace BlogModel
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsDeleted { get; set; }
+        public int RoleId { get; set; }
+        public string Username { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

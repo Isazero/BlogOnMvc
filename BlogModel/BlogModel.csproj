@@ -50,61 +50,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogContext.Context.cs">
+    <Compile Include="BlogDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlogContext.Context.tt</DependentUpon>
+      <DependentUpon>BlogDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogContext.cs">
+    <Compile Include="BlogDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlogContext.tt</DependentUpon>
+      <DependentUpon>BlogDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogContext.Designer.cs">
+    <Compile Include="BlogDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlogContext.edmx</DependentUpon>
+      <DependentUpon>BlogDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Comment.cs">
-      <DependentUpon>BlogContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>BlogContext.tt</DependentUpon>
+      <DependentUpon>BlogDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
-      <DependentUpon>BlogContext.tt</DependentUpon>
+      <DependentUpon>BlogDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>BlogDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>BlogDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>BlogContext.tt</DependentUpon>
+      <DependentUpon>BlogDb.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <EntityDeploy Include="BlogContext.edmx">
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="BlogDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BlogContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>BlogDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BlogContext.edmx.diagram">
-      <DependentUpon>BlogContext.edmx</DependentUpon>
+    <None Include="BlogDb.edmx.diagram">
+      <DependentUpon>BlogDb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BlogContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlogContext.edmx</DependentUpon>
-      <LastGenOutput>BlogContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BlogContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlogContext.edmx</DependentUpon>
-      <LastGenOutput>BlogContext.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="BlogDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BlogDb.edmx</DependentUpon>
+      <LastGenOutput>BlogDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BlogDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BlogDb.edmx</DependentUpon>
+      <LastGenOutput>BlogDb.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

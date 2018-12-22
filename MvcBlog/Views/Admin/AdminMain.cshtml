@@ -1,0 +1,229 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_AdminBasicLayout.cshtml";
+    ViewBag.Title = "Add Comment";
+}
+
+
+
+<div class="row">
+<div id="tabs">
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active">
+        <a href="#tabs-1">@Html.ActionLink("Users", "Index", "User", null, null, "tabs-1", null, null)</a>
+    </li>
+    <li>
+        <a href="#tabs-2">@Html.ActionLink("Posts", "Index", "Post", null, null, "tabs-2", null, null)</a>
+    </li>
+    <li>
+        <a href="#tabs-3">@Html.ActionLink("Comments", "Index", "Comment", null, null, "tabs-3", null, null)</a>
+    </li>
+</ul>
+
+<div id="tabs-1">
+    @Html.ActionLink("Create user", "OpenCreateUser", "User", null, null, "tabs-1", null, new { @class = "btn btn-primary", style = "float:right" })
+    <form action="/User/Search/#tabs-1">
+        @Html.DropDownList("filterVal", new List<SelectListItem>
+        {
+            new SelectListItem {Text = "All", Value = "0"},
+            new SelectListItem {Text = "UserId", Value = "1"},
+            new SelectListItem {Text = "Name", Value = "2"},
+            new SelectListItem {Text = "Surname", Value = "3"},
+            new SelectListItem {Text = "Email", Value = "4"},
+            new SelectListItem {Text = "Password", Value = "5"},
+            new SelectListItem {Text = "IsDeleted", Value = "6"},
+            new SelectListItem {Text = "IsDeleted", Value = "7"}
+        })
+        @Html.TextBox("searchVal", null, new { @autocomplete = "on" })
+        <input class="btn btn-primary" type="submit" name="submit" value="Search" id="s" style="margin-bottom: 5px" />
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th> @Html.ActionLink("UserId", "Sort", "User", null, null, "tabs-1", new {sortOrder = "id_desc"}, null)</th>
+            <th> @Html.ActionLink("Login", "Sort", "User", null, null, "tabs-1", new { sortOrder = "username_desc" }, null)</th>
+            <th> @Html.ActionLink("Name", "Sort", "User", null, null, "tabs-1", new {sortOrder = "name_desc"}, null)</th>
+            <th> @Html.ActionLink("Surname", "Sort", "User", null, null, "tabs-1", new {sortOrder = "surname_desc"}, null)</th>
+            <th> @Html.ActionLink("Email", "Sort", "User", null, null, "tabs-1", new {sortOrder = "email_desc"}, null)</th>
+            <th> @Html.ActionLink("Password", "Sort", "User", null, null, "tabs-1", new {sortOrder = "password_desc"}, null)</th>
+            <th> @Html.ActionLink("IsDeleted", "Sort", "User", null, null, "tabs-1", new {sortOrder = "isDeleted_desc"}, null)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (ViewBag.Users != null)
+        {
+            foreach (var u in ViewBag.Users)
+            {
+            <tr>
+
+                <td>
+                    @u.UserId
+                </td>
+                <td>
+                    @u.Username
+                </td>
+                <td>
+                    @u.Name
+                </td>
+                <td>
+                    @u.Surname
+                </td>
+                <td>
+                    @u.Email
+                </td>
+                <td>
+                    @u.Password
+                </td>
+                <td>
+                    @u.IsDeleted
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "OpenUpdateUser", "User", null, null, "tabs-1", new { userId = @u.UserId }, null)
+
+                    @Html.ActionLink("Delete", "DeleteUser", "User", null, null, "tabs-1", new { userId = @u.UserId }, null)
+                </td>
+            </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+
+<div id="tabs-2">
+    @Html.ActionLink("Create post", "OpenCreatePost", "Post", null, null, "tabs-2", null, new { @class = "btn btn-primary", style = "float:right" })
+    <form action="/Post/Search/#tabs-2">
+        @Html.DropDownList("filterVal", new List<SelectListItem>
+        {
+            new SelectListItem {Text = "All", Value = "0"},
+            new SelectListItem {Text = "PostId", Value = "1"},
+            new SelectListItem {Text = "Title", Value = "2"},
+            new SelectListItem {Text = "Slug", Value = "3"},
+            new SelectListItem {Text = "Content", Value = "4"},
+            new SelectListItem {Text = "UserId", Value = "5"},
+            new SelectListItem {Text = "Date", Value = "6"},
+            new SelectListItem {Text = "IsDeleted", Value = "7"},
+        })
+        @Html.TextBox("searchVal", null, new {@autocomplete = "on"})
+        <input type="submit" name="submit" value="Search" id="s"/>
+    </form>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>@Html.ActionLink("PostId", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "id_desc"}, null)</th>
+            <th>@Html.ActionLink("Title", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "title_desc"}, null)</th>
+            <th>@Html.ActionLink("Slug", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "slug_desc"}, null)</th>
+            <th>@Html.ActionLink("Content", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "content_desc"}, null)</th>
+            <th>@Html.ActionLink("UserId", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "user_desc"}, null)</th>
+            <th>@Html.ActionLink("Date", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "date_desc"}, null)</th>
+            <th>@Html.ActionLink("IsDeleted", "Sort", "Post", null, null, "tabs-2", new {sortOrder = "isDeleted_desc"}, null)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (ViewBag.Posts != null)
+        {
+            foreach (var p in ViewBag.Posts)
+            {
+                <tr>
+                    <td>
+                        @p.PostId
+                    </td>
+                    <td>
+                        @p.Title
+                    </td>
+                    <td>
+                        @p.Slug
+                    </td>
+                    <td>
+                        @p.Content
+                    </td>
+                    <td>
+                        @p.UserId
+                    </td>
+                    <td>
+                        @p.PublishDate
+                    </td>
+                    <td>
+                        @p.IsDeleted
+                    </td>
+                    <td>
+                        @Html.ActionLink("Update", "OpenUpdatePost", "Post", null, null, "tabs-2", new {postId = @p.PostId}, null)
+
+                        @Html.ActionLink("Delete", "DeletePost", "Post", null, null, "tabs-2", new {postId = @p.PostId}, null)
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+<div id="tabs-3">
+    @Html.ActionLink("Add Comment", "OpenAddComment", "Comment", null, null, "tabs-3", null, new { @class = "btn btn-primary", style = "float:right" })
+
+    <form action="/Comment/Search/#tabs-3">
+        @Html.DropDownList("filterVal", new List<SelectListItem>
+        {
+            new SelectListItem {Text = "All", Value = "0"},
+            new SelectListItem {Text = "CommentId", Value = "1"},
+            new SelectListItem {Text = "Content", Value = "2"},
+            new SelectListItem {Text = "UserId", Value = "3"},
+            new SelectListItem {Text = "PostId", Value = "4"},
+            new SelectListItem {Text = "DateCreated", Value = "5"}
+        })
+
+        @Html.TextBox("searchVal", null, new { @autocomplete = "on" })
+
+        <input type="submit" name="submit" value="Search" id="s" />
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>@Html.ActionLink("CommentId", "Sort", "Comment", null, null, "tabs-3", new { sortOrder = "id_desc" }, null)</th>
+            <th>@Html.ActionLink("Content", "Sort", "Comment", null, null, "tabs-3", new { sortOrder = "content_desc" }, null)</th>
+            <th>@Html.ActionLink("UserId", "Sort", "Comment", null, null, "tabs-3", new { sortOrder = "userId_desc" }, null)</th>
+            <th>@Html.ActionLink("PostId", "Sort", "Comment", null, null, "tabs-3", new { sortOrder = "postId_desc" }, null)</th>
+            <th>@Html.ActionLink("DateCreated", "Sort", "Comment", null, null, "tabs-3", new { sortOrder = "date_desc" }, null)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (ViewBag.Comments != null)
+        {
+            foreach (var c in ViewBag.Comments)
+            {
+                <tr>
+                    <td>
+                        @c.CommentId
+                    </td>
+                    <td>
+                        @c.Content
+                    </td>
+                    <td>
+                        @c.UserId
+                    </td>
+                    <td>
+                        @c.PostId
+                    </td>
+                    <td>
+                        @c.DateCreated
+                    </td>
+                    <td>
+                        @Html.ActionLink("Update", "OpenUpdateComment", "Comment", null, null, "tabs-2", new {commentId = @c.CommentId}, null)
+
+                        @Html.ActionLink("Delete", "DeleteComment", "Comment", null, null, "tabs-3", new {commentId = @c.CommentId}, null)
+                    </td>
+
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+</div>
+    
+
+</div>

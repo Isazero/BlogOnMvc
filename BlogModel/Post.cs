@@ -19,7 +19,6 @@ namespace BlogModel
         {
             this.Comments = new HashSet<Comment>();
         }
-
     
         public int PostId { get; set; }
         public string Title { get; set; }
