@@ -4,16 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1f39d975a0ee471b9f9f21e38be44b7d" Name="Diagram1">
+      <Diagram DiagramId="8d1c4a43f33f4da18d9bac38caf5a781" Name="Diagram1">
         <EntityTypeShape EntityType="BlogDbModel.Comment" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDbModel.Post" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDbModel.Role" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDbModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDbModel.User" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <AssociationConnector Association="BlogDbModel.FK_dbo_Comments_dbo_Posts_PostId" ManuallyRouted="false" />
-        <AssociationConnector Association="BlogDbModel.FK_dbo_Comments_dbo_Users_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="BlogDbModel.FK_dbo_Posts_dbo_Users_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="BlogDbModel.FK__Users__roleId__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="BlogDbModel.FK__Comments__PostId__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="BlogDbModel.FK__Comments__UserId__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="BlogDbModel.FK__Posts__UserId__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="BlogDbModel.FK__Users__RoleId__6383C8BA" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

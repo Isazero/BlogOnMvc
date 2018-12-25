@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Профиль";
+    ViewBag.Title = "Profile";
     Layout = ViewData["Layout"].ToString();
 }
 @model List<BlogModel.Post>
 
 
 <div class="jumbotron">
-    <h1>История моих постов</h1>
+    <h1>My history</h1>
 </div>
 <div class="row">
     @foreach (var p in Model)
@@ -21,11 +21,11 @@
                 {
                     @Html.Hidden("postId", p.PostId)
                     <input class="btn " type="submit" name="submit" value="Read" id="submit" />
-                    @Html.Label("Дата: " + p.PublishDate, new { @style = "margin-left: 50px" })
-                    @Html.Label("Автор: " + p.User.Username, new { @style = "margin-left:  150px" })
+                    @Html.Label("Date: " + p.PublishDate, new { @style = "margin-left: 50px" })
+                    @Html.Label("Author: " + p.User.Username, new { @style = "margin-left:  150px" })
                 }
                 <button class="btn ">
-                    @Html.ActionLink("Удалить", "UserDeletePost", "Post", null, null, null, new {postId = p.PostId }, null)
+                    @Html.ActionLink("Delete", "UserDeletePost", "Post", null, null, null, new {postId = p.PostId }, null)
                 </button>
 
             </div>

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Post";
+    ViewBag.Title = "View post";
     Layout = ViewData["Layout"].ToString();
 }
 @model BlogModel.Post
@@ -15,10 +15,10 @@
             <p class="text-center">
                 @Model.Content
             </p>
-            <small>Дата публикации: @Model.PublishDate</small>
+            <small>Date published: @Model.PublishDate</small>
             @if (@Model.User.Username == User.Identity.Name)
             {
-                @Html.ActionLink("Редактировать", "OpenUserUpdatePost", "Post", null, null, null, new { postId = Model.PostId }, null)
+                @Html.ActionLink("Edit", "OpenUserUpdatePost", "Post", null, null, null, new { postId = Model.PostId }, null)
             }
         </div>
         <h4>Comments</h4>
@@ -32,7 +32,7 @@
             else
             {
                 @Html.TextArea("content", " ", 5, 5, new { id = "contentArea", @class = "form-control" })
-                <input class="btn btn-primary" type="submit" name="submit" style="margin-bottom: 10px;margin-top: 10px" value="Добавить комментарий" id="submit" />
+                <input class="btn btn-primary" type="submit" name="submit" style="margin-bottom: 10px;margin-top: 10px" value="Add comment" id="submit" />
             }
 
             @Html.Hidden("dateCreated", DateTime.Now)
@@ -43,10 +43,10 @@
         {
             <div class="border">
                 <p>@c.Content</p>
-                <p>Автор : @c.User.Username</p>
+                <p>Author : @c.User.Username</p>
                 @if (@c.User.Username.Equals(User.Identity.Name))
                 {
-                    @Html.ActionLink("Удалить", "UserDeleteComment", "Comment",null, null, null, new { commentId = c.CommentId, postId = Model.PostId }, null)
+                    @Html.ActionLink("Delete", "UserDeleteComment", "Comment",null, null, null, new { commentId = c.CommentId, postId = Model.PostId }, null)
                 
                  
                 }

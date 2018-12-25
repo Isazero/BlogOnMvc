@@ -11,16 +11,16 @@
         {
             @Html.Hidden("postId",Model.PostId)
             @Html.AntiForgeryToken()
-            <h4>Редактирование поста</h4>
+            <h4>Edit Post</h4>
 
             @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-            @Html.Label("Заголовок")
+            @Html.Label("Title")
             @Html.TextBox("title", Model.Title)
             @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
 
 
-            @Html.Label("Содержание")
+            @Html.Label("Post")
             @Html.TextArea("content", Model.Content, 5, 5, new {@class = "form-control"})
             @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
 

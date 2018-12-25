@@ -11,10 +11,14 @@ namespace MvcBlog.Methods
         {
             using (BlogDbContext db = new BlogDbContext())
             {
-                if (db.Users.Any(u => u.Username.Equals(model.Login)))
+                if (db.Users.ToList().Count != 0)
                 {
-                    return;
+                    if (db.Users.Any(u => u.Username.Equals(model.Login)))
+                    {
+                        return;
+                    }
                 }
+
                 User newUser = new User
                 {
                     Username = model.Login,
