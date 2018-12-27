@@ -4,8 +4,9 @@
     Layout = ViewData["Layout"].ToString();
 
 }
+@model List<BlogModel.Post>
 
-@foreach (var p in ViewBag.Posts)
+@foreach (var p in Model)
 {
     <div class="row">
 

@@ -3,11 +3,12 @@
     ViewBag.Title = "AllPosts";
     Layout = ViewData["Layout"].ToString();
 }
+@model List<BlogModel.Post>
 <div class="jumbotron">
     <h1>Posts History</h1>
 </div>
 <div class="row">
-    @foreach (var p in ViewBag.Posts)
+    @foreach (var p in Model)
     {
 
         <div class="card" style="width: 400px">

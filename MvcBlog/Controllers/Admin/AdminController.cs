@@ -17,10 +17,8 @@ namespace MvcBlog.Controllers.Admin
 
             using (BlogDbContext db = new BlogDbContext())
             {
-               
                     ViewBag.Users = db.Users.ToList();
                     return View();
-                
             }
             
         }

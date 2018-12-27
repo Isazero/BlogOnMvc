@@ -15,11 +15,10 @@ namespace MvcBlog.Controllers
                 var posts = db.Posts.Where(p => p.IsDeleted == false).OrderByDescending(p => p.PublishDate)
                     .Take(10).ToList();
                 posts = GetMethods.GetInitializedUserList(posts);
-                ViewBag.Posts = posts;
                 ViewData["Layout"] = GetMethods.GetLayout(User.Identity.Name);
 
 
-                return View("~/Views/Main/Index.cshtml");
+                return View("~/Views/Main/Index.cshtml",posts);
             }
         }
 
@@ -31,10 +30,9 @@ namespace MvcBlog.Controllers
                 var posts = db.Posts.Where(p => p.IsDeleted == false).OrderByDescending(p => p.PublishDate)
                     .ToList();
                 posts = GetMethods.GetInitializedUserList(posts);
-                ViewBag.Posts = posts;
                 ViewData["Layout"] = GetMethods.GetLayout(User.Identity.Name);
 
-                return View("~/Views/Main/AllPosts.cshtml");
+                return View("~/Views/Main/AllPosts.cshtml",posts);
             }
         }
 

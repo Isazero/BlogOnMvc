@@ -14,27 +14,30 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="margin-bottom:0">
         <h1>Welcome to Blog</h1>
     </div>
-<nav class="navbar navbar-expand-sm bg-light">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            @Html.ActionLink("Admin Panel", "AdminMain", "Admin", null, null, null, null, new { @class = "btn btn-primary", style = "float:right" })
-        </li>
-        <li class="nav-item">
-            @Html.ActionLink("Show all posts", "ShowAll", "MainPage", null, null, null, null, new { @class = "btn btn-primary", style = "float:right" })
-        </li>
-        <li class="nav-item">
-            @Html.ActionLink("Create post", "OpenAddPost", "Post", null, null, null, null, new { @class = "btn btn-primary", style = "float:right" })
-        </li>
-        <li class="nav-item">
-            @Html.ActionLink("My profile", "Profile", "Account", null, null, null, null, new { @class = "btn btn-primary", style = "float:right" })
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    @Html.ActionLink("Main page", "Index", "MainPage", null, null, null, null, new {@class = "navbar-brand"})
+    
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Admin Panel", "AdminMain", "Admin", null, null, null, null, new { @class = "nav-link", style = "float:right" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Show all posts", "ShowAll", "MainPage", null, null, null, null, new { @class = "nav-link", style = "float:right" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Create post", "OpenAddPost", "Post", null, null, null, null, new { @class = "nav-link", style = "float:right" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("My profile", "Profile", "Account", null, null, null, null, new { @class = "nav-link", style = "float:right" })
+            </li>
+        </ul>
+    </div>
 </nav>
-<div class="container-fluid" style="width: 1200px; margin: 0 auto">
-
+<div class="container-fluid" style="margin-top:30px">
     @RenderBody()
 </div>
 
