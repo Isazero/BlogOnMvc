@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Linq;
 using BlogModel;
+using Common;
 using MvcBlog.Models;
 
 namespace MvcBlog.Methods
 {
     public class InsertMethods
     {
-        public static void RegisterNewUser(RegisterModel model)
+        public static int RegisterNewUser(RegisterModel model)
         {
             using (BlogDbContext db = new BlogDbContext())
             {
                 if (db.Users.ToList().Count != 0)
                 {
+                    //Check if user exist
                     if (db.Users.Any(u => u.Username.Equals(model.Login)))
                     {
-                        return;
+                        return (int)Registration.UserExists;
                     }
                 }
 
@@ -31,7 +33,9 @@ namespace MvcBlog.Methods
                 };
                 db.Users.Add(newUser);
                 db.SaveChanges();
+                return (int)Registration.Success;
             }
+
         }
 
         public static void AddNewPost(PostModel post,string login)

@@ -122,22 +122,14 @@ namespace MvcBlog.Controllers.Admin
         }
 
         [AdminAccess]
-        public ActionResult CreatePost(string title, string slug, string content, int userId, DateTime publishDate,
-            bool isDeleted = false)
+        public ActionResult CreatePost(Post post)
         {
-            if (string.IsNullOrEmpty(publishDate.ToString(CultureInfo.CurrentCulture))) publishDate = DateTime.Today;
-
+            if (string.IsNullOrEmpty(post.PublishDate.ToString(CultureInfo.CurrentCulture))) post.PublishDate = DateTime.Now;
+           
             using (var db = new BlogDbContext())
             {
                 try
                 {
-                    var post = new Post();
-                    post.Title = title;
-                    post.Slug = slug;
-                    post.Content = content;
-                    post.UserId = userId;
-                    post.PublishDate = publishDate;
-                    post.IsDeleted = isDeleted;
                     db.Posts.Add(post);
                     db.SaveChanges();
                 }
@@ -162,24 +154,25 @@ namespace MvcBlog.Controllers.Admin
         }
 
         [AdminAccess]
-        public ActionResult UpdatePost(int postId, string title, string slug, string content, int userId,
-            DateTime publishDate, bool isDeleted = false)
+        public ActionResult UpdatePost(Post post)
         {
+            string wrongDate = "01/01/0001";
+            if (string.IsNullOrEmpty(post.PublishDate.ToString(CultureInfo.CurrentCulture)) || post.PublishDate == Convert.ToDateTime(wrongDate)) post.PublishDate = DateTime.Now;
+
             using (var db = new BlogDbContext())
             {
                 try
                 {
-                    var post = db.Posts.FirstOrDefault(u => u.PostId == postId);
-                    if (post != null)
+                    var postInDb = db.Posts.FirstOrDefault(u => u.PostId == post.PostId);
+                    if (postInDb != null)
                     {
-                        post.Title = title;
-                        post.Slug = slug;
-                        post.Content = content;
-                        post.UserId = userId;
-                        post.PublishDate = publishDate;
-                        post.IsDeleted = isDeleted;
+                        postInDb.Title = post.Title;
+                        postInDb.Slug = post.Slug;
+                        postInDb.Content = post.Content;
+                        postInDb.UserId = post.UserId;
+                        postInDb.PublishDate = post.PublishDate;
+                        postInDb.IsDeleted = post.IsDeleted;
                     }
-
                     db.SaveChanges();
                 }
                 catch (Exception e)
@@ -202,12 +195,12 @@ namespace MvcBlog.Controllers.Admin
                 {
                     var comments = db.Comments.Where(c => c.PostId == postId).ToList();
                     foreach (var c in comments) db.Comments.Remove(c);
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
+                    //ignored
                 }
-
-                db.SaveChanges();
  
             }
         }

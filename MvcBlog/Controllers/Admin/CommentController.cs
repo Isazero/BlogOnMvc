@@ -81,7 +81,6 @@ namespace MvcBlog.Controllers.Admin
                     case 5:
                         comments = comments.Where(c =>
                             c.DateCreated.Date.ToString(CultureInfo.CurrentCulture).Contains(searchVal)).ToList();
-                   
                         break;
                     default:
                         comments = comments.Where(c =>

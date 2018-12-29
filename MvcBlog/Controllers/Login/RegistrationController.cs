@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Common;
 using MvcBlog.Methods;
 using MvcBlog.Models;
 
@@ -19,16 +20,14 @@ namespace MvcBlog.Controllers.Login
         {
             if (ModelState.IsValid)
             {
-                InsertMethods.RegisterNewUser(model);
-                if (CheckMethods.IsUserExists(model.Login))
+                var status = InsertMethods.RegisterNewUser(model);
+                if (status == (int)Registration.Success && CheckMethods.IsUserExists(model.Login))
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
                     return RedirectToAction("Index", "Account");
                 }
-
-                ModelState.AddModelError("", "Пользователь с таким логином уже существует");
             }
-
+            ViewBag.Error = "Already exists";
             return View("~/Views/Register/Registration.cshtml", model);
         }
     }

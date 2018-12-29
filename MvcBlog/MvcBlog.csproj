@@ -268,6 +268,10 @@
       <Project>{33b716f9-6564-4b0b-b4c7-e70523a05734}</Project>
       <Name>BlogModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{3a6d3465-0f72-4c5d-a2dd-51620d8c38d2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
