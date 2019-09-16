@@ -1,5 +1,5 @@
 # BlogOnMvc
-My blog using asp.net mvc
+My blog using asp.net mvc. Educational project to practice knowledge in asp.net mvc
 What do I have now
 
 Admin menu. You can CRUD users,posts,comments.
